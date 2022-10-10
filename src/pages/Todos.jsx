@@ -115,6 +115,9 @@ const Todos = () => {
       >
         +
       </div>
+      <p className='text-slate-300 text-sm text-right'>
+        *Please refresh your page if the data is not updated
+      </p>
       {popup ? (
         <div className='fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] w-[100%] max-w-[400px] bg-slate-200 p-[32px] rounded-md shadow-lg'>
           <div
