@@ -68,7 +68,7 @@ const SingleTodos = () => {
             onChange={(e) => setNewSingleTodo(e.target.value)}
             value={newSingleTodo}
           />
-          <div className='flex items-center justify-center'>
+          <div className='flex flex-row items-center justify-center'>
             <div
               className={
                 todos.completed
@@ -77,7 +77,7 @@ const SingleTodos = () => {
               }
               onClick={() => updateTodo(todos._id)}
             ></div>
-            <div className='text-slate-200 mt-4'>Completed</div>
+            <div className='text-slate-200 mt-4 mr-4'>Completed</div>
           </div>
           <div
             className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-500 text-white cursor-pointer'

@@ -24,9 +24,6 @@ const Todos = () => {
       console.log(error.response)
     }
   }
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   const addTodo = async (e) => {
     e.preventDefault()
@@ -66,6 +63,9 @@ const Todos = () => {
     )
   }
 
+  useEffect(() => {
+    fetchData()
+  }, [newTodo])
   return (
     <div className='p-[32px]'>
       <h1 className='text-3xl font-bold mb-[32px] text-slate-100'>Welcome!</h1>
