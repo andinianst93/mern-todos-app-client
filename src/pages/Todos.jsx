@@ -26,7 +26,7 @@ const Todos = () => {
   }
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [todos])
 
   const addTodo = async (e) => {
     e.preventDefault()
