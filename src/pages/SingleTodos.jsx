@@ -79,12 +79,14 @@ const SingleTodos = () => {
             ></div>
             <div className='text-slate-200 mt-4 mr-4'>Completed</div>
           </div>
-          <div
-            className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-500 text-white cursor-pointer'
-            onClick={() => newTodo(todos._id)}
-          >
-            <Link to='/'> Update Todo</Link>
-          </div>
+          <Link to='/'>
+            <div
+              className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-500 text-white cursor-pointer'
+              onClick={() => newTodo(todos._id)}
+            >
+              Update Todo
+            </div>
+          </Link>
         </article>
       </section>
     </div>
