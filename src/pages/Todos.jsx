@@ -26,7 +26,7 @@ const Todos = () => {
   }
   useEffect(() => {
     fetchData()
-  }, [todos])
+  }, [])
 
   const addTodo = async (e) => {
     e.preventDefault()
@@ -53,14 +53,13 @@ const Todos = () => {
     const data = await axios.patch(
       `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
       {
-        id: todos._id,
         completed: !todos.completed,
       }
     )
     setTodos((todos) =>
       todos.map((todo) => {
-        if (todo._id === todos._id) {
-          todo.completed = !todo.completed
+        if (todos._id === _id) {
+          todos.completed = !todos.completed
         }
         return todo
       })
@@ -87,8 +86,8 @@ const Todos = () => {
               <div
                 className={
                   todo.completed
-                    ? 'w-[20px] h-[20px] mr-[16px] rounded-lg bg-purple-600 transition duration-[0.4s]'
-                    : 'w-[20px] h-[20px] mr-[16px] rounded-lg bg-slate-100 transition duration-[0.4s]'
+                    ? 'w-[20px] h-[20px] mr-[16px] rounded-lg bg-purple-600'
+                    : 'w-[20px] h-[20px] mr-[16px] rounded-lg bg-slate-100'
                 }
                 onClick={() => completeTodo(todo._id)}
               ></div>
