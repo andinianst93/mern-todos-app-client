@@ -1,4 +1,4 @@
 import Todos from './Todos'
 import SingleTodos from './SingleTodos'
-
-export { Todos, SingleTodos }
+import Testing from './Testing'
+export { Todos, SingleTodos, Testing }

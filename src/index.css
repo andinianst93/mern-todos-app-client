@@ -7,3 +7,11 @@
 body {
   @apply bg-slate-900 font-poppins;
 }
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
