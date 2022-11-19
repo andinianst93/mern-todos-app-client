@@ -10,7 +10,7 @@ const Todos = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        'https://mern-todos-app-adn.herokuapp.com/api/v1/todos',
+        'https://mern-todos-app-server.onrender.com/api/v1/todos',
         {
           headers: {
             authorization: ' xxxxxxxxxx',
@@ -28,7 +28,7 @@ const Todos = () => {
   const addTodo = async (e) => {
     e.preventDefault()
     const data = await axios.post(
-      'https://mern-todos-app-adn.herokuapp.com/api/v1/todos',
+      'https://mern-todos-app-server.onrender.com/api/v1/todos',
       {
         todo: newTodo,
       }
@@ -40,7 +40,7 @@ const Todos = () => {
 
   const deleteTodo = async (_id) => {
     await axios.delete(
-      `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
+      `https://mern-todos-app-server.onrender.com/api/v1/todos/${_id}`,
       { _id }
     )
     setTodos((todos) => todos.filter((todo) => todo._id !== _id))
@@ -48,7 +48,7 @@ const Todos = () => {
 
   const completeTodo = async (_id) => {
     const data = await axios.patch(
-      `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
+      `https://mern-todos-app-server.onrender.com/api/v1/todos/${_id}`,
       {
         completed: !todos.completed,
       }

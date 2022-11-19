@@ -12,7 +12,7 @@ const SingleTodos = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${id}`
+        `https://mern-todos-app-server.onrender.com/api/v1/todos/${id}`
       )
       const data = response.data
       setTodos(data.todos)
@@ -27,7 +27,7 @@ const SingleTodos = () => {
   const updateTodo = async (_id) => {
     setCompleted(false)
     const data = await axios.patch(
-      `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
+      `https://mern-todos-app-server.onrender.com/api/v1/todos/${_id}`,
       {
         completed: !todos.completed,
       }
@@ -40,14 +40,14 @@ const SingleTodos = () => {
   }
   const newTodo = async (_id) => {
     const data = await axios.patch(
-      `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
+      `https://mern-todos-app-server.onrender.com/api/v1/todos/${_id}`,
       {
         todo: newSingleTodo ? newSingleTodo : undefined,
       }
     )
     if (!newSingleTodo) {
       await axios.patch(
-        `https://mern-todos-app-adn.herokuapp.com/api/v1/todos/${_id}`,
+        `https://mern-todos-app-server.onrender.com/api/v1/todos/${_id}`,
         {
           todo: newSingleTodo ? newSingleTodo : undefined,
         }
