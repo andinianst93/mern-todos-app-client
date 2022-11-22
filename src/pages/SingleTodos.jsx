@@ -14,7 +14,7 @@ const SingleTodos = () => {
       const { data } = await axios.get(
         `https://mern-todos-app-server.onrender.com/api/v1/todos/${id}`
       )
-      console.log(data)
+
       setTodos(data.todo)
     } catch (error) {
       console.log(error.response)
@@ -79,15 +79,22 @@ const SingleTodos = () => {
             ></div>
             <div className='text-slate-200 mt-4 mr-4'>Completed</div>
           </div>
-          <Link to='/'>
-            <div
-              className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-500 text-white cursor-pointer'
-              onClick={() => newTodo(todos._id)}
-            >
-              Update Todo
-            </div>
-          </Link>
+
+          <div
+            className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-500 text-white cursor-pointer'
+            onClick={() => newTodo(todos._id)}
+          >
+            <Link to='/'>Update Todo</Link>
+          </div>
         </article>
+      </section>
+      <section className='mx-auto md:w-[50%] w-[100%] flex items-center justify-center'>
+        <button
+          type='button'
+          className='py-[8px] px-[32px] rounded-lg inline-block font-bold uppercase text-sm mt-[16px] mb-[32px] text-center bg-sky-900 text-white cursor-pointer'
+        >
+          <Link to='/todos'> Back to all todos</Link>
+        </button>
       </section>
     </div>
   )
