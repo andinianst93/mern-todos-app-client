@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 const Todos = () => {
   const [todos, setTodos] = useState([])
   const [popup, setPopUp] = useState(false)
@@ -68,7 +68,7 @@ const Todos = () => {
   }, [newTodo])
   return (
     <div className='p-[32px]'>
-      <h1 className='text-3xl font-bold mb-[32px] text-slate-100'>Welcome!</h1>
+      <Navbar />
       <h2 className='text-lg text-slate-300 uppercase font-semibold mb-[16px]'>
         Your todos
       </h2>

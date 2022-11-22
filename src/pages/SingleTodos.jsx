@@ -11,11 +11,11 @@ const SingleTodos = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
+      const { data } = await axios.get(
         `https://mern-todos-app-server.onrender.com/api/v1/todos/${id}`
       )
-      const data = response.data
-      setTodos(data.todos)
+      console.log(data)
+      setTodos(data.todo)
     } catch (error) {
       console.log(error.response)
     }
