@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormRow = ({
+const FormRowS = ({
   type,
   name,
   value,
@@ -15,16 +15,16 @@ const FormRow = ({
           {name}
         </label>
       )}
-      <textarea
+      <input
         type={type}
         value={value}
         name={name}
         onChange={handleChange}
         placeholder={placeholder}
-        className='w-[100%] h-[100px] py-[0.375rem] px-[0.75rem] rounded-md bg-gray-50 border-solid border-2 border-gray-100'
+        className='w-[100%] py-[0.375rem] px-[0.75rem] rounded-md bg-gray-50 border-solid border-2 border-gray-100'
       />
     </div>
   )
 }
 
-export default FormRow
+export default FormRowS

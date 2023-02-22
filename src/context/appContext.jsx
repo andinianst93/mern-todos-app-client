@@ -6,14 +6,25 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
   SET_USER,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_ERROR,
   LOGOUT_USER,
+  CREATE_ITEM_SUCCESS,
+  CREATE_ITEM_ERROR,
+  DELETE_ITEM_ERROR,
+  FETCH_SINGLE_ITEM_SUCCESS,
+  FETCH_SINGLE_ITEM_ERROR,
+  EDIT_ITEM_SUCCESS,
+  EDIT_ITEM_ERROR,
 } from './actions'
 import reducer from './reducer'
 
 const initialState = {
   user: null,
   isLoading: 'false',
+  data: [],
   showAlert: false,
+  singleItemError: false,
   editComplete: false,
   editItem: null,
 }
@@ -57,7 +68,57 @@ const AppProvider = ({ children }) => {
     localStorage.removeItem('user')
     dispatch({ type: LOGOUT_USER })
   }
-
+  // fetch item
+  const fetchItems = async () => {
+    setLoading()
+    try {
+      const { data } = await axios.get(`/todos`)
+      dispatch({ type: FETCH_ITEMS_SUCCESS, payload: data.d })
+    } catch (error) {
+      dispatch({ type: FETCH_ITEMS_ERROR })
+      logout()
+    }
+  }
+  // create item
+  const createItem = async (userInput) => {
+    setLoading()
+    try {
+      const { data } = await axios.post(`/todos`, { ...userInput })
+      dispatch({ type: CREATE_ITEM_SUCCESS, payload: data.d })
+    } catch (error) {
+      dispatch({ type: CREATE_ITEM_ERROR })
+    }
+  }
+  // delete item
+  const deleteItem = async (dataId) => {
+    setLoading()
+    try {
+      await axios.delete(`/todos/${dataId}`)
+      fetchItems()
+    } catch (error) {
+      dispatch({ type: DELETE_ITEM_ERROR })
+    }
+  }
+  // fetch single item
+  const fetchSingleItem = async (dataId) => {
+    setLoading()
+    try {
+      const { data } = await axios.get(`/todos/${dataId}`)
+      dispatch({ type: FETCH_SINGLE_ITEM_SUCCESS, payload: data.singleD })
+    } catch (error) {
+      dispatch({ FETCH_SINGLE_ITEM_ERROR })
+    }
+  }
+  // edit item
+  const editSingleItem = async (dataId, userInput) => {
+    setLoading()
+    try {
+      const { data } = await axios.patch(`/todos/${dataId}`, { ...userInput })
+      dispatch({ type: EDIT_ITEM_SUCCESS, payload: data.d })
+    } catch (error) {
+      dispatch({ type: EDIT_ITEM_ERROR })
+    }
+  }
   // useEffect localStorage
   useEffect(() => {
     const user = localStorage.getItem('user')
@@ -74,6 +135,11 @@ const AppProvider = ({ children }) => {
         register,
         login,
         logout,
+        fetchItems,
+        createItem,
+        deleteItem,
+        fetchSingleItem,
+        editSingleItem,
       }}
     >
       {children}

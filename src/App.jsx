@@ -1,20 +1,21 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Todos, Home, SingleTodos, PrivateRoute, Testing } from './pages'
+import { Dashboard, Home, Edit, PrivateRoute, Error } from './pages'
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path='/todos'
+          path='/dashboard'
           element={
             <PrivateRoute>
-              <Todos />
+              <Dashboard />
             </PrivateRoute>
           }
         ></Route>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/:id' element={<SingleTodos />}></Route>
+        <Route path='/edit/:id' element={<Edit />}></Route>
+        <Route path='*' element={<Error />}></Route>
       </Routes>
     </BrowserRouter>
   )

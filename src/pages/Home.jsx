@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <>
       <SectionContainer>
-        {user && <Navigate to='/todos' />}
+        {user && <Navigate to='/dashboard' />}
         <div className='mx-auto max-w-[1120px] px-4 sm:px-6 xl:max-w-5xl xl:px-0 min-h-[100vh] grid items-center'>
           <div>
             {showAlert && (
