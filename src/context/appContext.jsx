@@ -104,7 +104,8 @@ const AppProvider = ({ children }) => {
     setLoading()
     try {
       const { data } = await axios.get(`/todos/${dataId}`)
-      dispatch({ type: FETCH_SINGLE_ITEM_SUCCESS, payload: data.singleD })
+      console.log(data)
+      dispatch({ type: FETCH_SINGLE_ITEM_SUCCESS, payload: data.d })
     } catch (error) {
       dispatch({ FETCH_SINGLE_ITEM_ERROR })
     }
@@ -114,6 +115,7 @@ const AppProvider = ({ children }) => {
     setLoading()
     try {
       const { data } = await axios.patch(`/todos/${dataId}`, { ...userInput })
+      console.log(data)
       dispatch({ type: EDIT_ITEM_SUCCESS, payload: data.d })
     } catch (error) {
       dispatch({ type: EDIT_ITEM_ERROR })

@@ -7,9 +7,51 @@ import Navbar from '../components/Navbar'
 import SectionContainer from '../components/SectionContainer'
 
 const Edit = () => {
+  const { id } = useParams()
+  const {
+    isLoading,
+    editItem,
+    fetchSingleItem,
+    singleItemError: error,
+    user,
+    editSingleItem,
+    editComplete,
+  } = useGlobalContext()
+  const [values, setValues] = useState({
+    title: '',
+    description: '',
+    status: '',
+  })
+  useEffect(() => {
+    fetchSingleItem(id)
+  }, [id])
+
+  useEffect(() => {
+    if (editItem) {
+      const { title, description, status } = editItem
+      setValues({ title, description, status })
+    }
+  }, [editItem])
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const { title, description, status } = values
+    if (title && description) {
+      editSingleItem(id, { title, description, status })
+    }
+  }
+  if (isLoading && !editItem) {
+    return (
+      <div className='w-[6rem] h-[6rem] border-solid border-2 border-gray-400 rounded-md border-t-sky-700 m-auto animate-spin'></div>
+    )
+  }
+
   return (
     <SectionContainer>
-      {/* {!user && <Navigate to='/' />} */}
+      {!user && <Navigate to='/' />}
       <Navbar />
       <div className='mx-auto flex items-center justify-center mb-8'>
         <Link
@@ -19,11 +61,8 @@ const Edit = () => {
           Dashboard
         </Link>
       </div>
-      <form
-        className='max-w-screen-lg mx-auto'
-        // onSubmit={handleSubmit}
-      >
-        {/* <p className='text-sky-700'>{editComplete && 'Success!'}</p> */}
+      <form className='max-w-screen-lg mx-auto' onSubmit={handleSubmit}>
+        <p className='text-sky-700'>{editComplete && 'Success!'}</p>
         <h4 className='text-center font-bold text-xl text-gray-100 mb-4'>
           Edit
         </h4>
@@ -31,14 +70,15 @@ const Edit = () => {
           <FormRowS
             type='name'
             name='title'
-            // value={values.item}
-            // handleChange={handleChange}
+            value={values.title}
+            handleChange={handleChange}
+            className='text-black'
           />
           <FormRow
             type='name'
-            name='recommendation'
-            // value={values.recommendation}
-            // handleChange={handleChange}
+            name='description'
+            value={values.description}
+            handleChange={handleChange}
           />
 
           <div className='mb-4'>
@@ -47,8 +87,8 @@ const Edit = () => {
             </label>
             <select
               name='status'
-              // value={values.status}
-              // onChange={handleChange}
+              value={values.status}
+              onChange={handleChange}
               className='bg-gray-100 text-black rounded-md border-transparent p-[0.25rem] capitalize'
             >
               <option value='true'>finish</option>
