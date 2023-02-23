@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useGlobalContext } from '../context/appContext'
 import { Navigate } from 'react-router-dom'
-import FormRow from '../components/FormRow'
+import FormRowS from '../components/FormRowS'
 import SectionContainer from '../components/SectionContainer'
 
 const Home = () => {
@@ -52,20 +52,20 @@ const Home = () => {
                 {values.isMember ? 'Login' : 'Register'}
               </h4>
               {!values.isMember && (
-                <FormRow
+                <FormRowS
                   type='name'
                   name='name'
                   value={values.name}
                   handleChange={handleChange}
                 />
               )}
-              <FormRow
+              <FormRowS
                 type='email'
                 name='email'
                 value={values.email}
                 handleChange={handleChange}
               />
-              <FormRow
+              <FormRowS
                 type='password'
                 name='password'
                 value={values.password}
