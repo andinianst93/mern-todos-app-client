@@ -27,7 +27,7 @@ const Items = () => {
     <>
       <div>
         {data.map((x) => {
-          const { _id: id, title, description, status, createdAt } = x
+          const { _id: id, title, description, status, updatedAt } = x
 
           return (
             <article
@@ -41,7 +41,7 @@ const Items = () => {
                       {title}
                     </h2>
                     <p className='text-base text-gray-400'>
-                      {moment({ createdAt }).format('MMMM Do YYYY, h:mm a')}
+                      {moment({ updatedAt }).format('MMMM Do YYYY, h:mm a')}
                     </p>
                   </div>
                   <div className='flex items-center'>
