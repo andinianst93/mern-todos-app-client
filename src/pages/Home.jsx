@@ -32,7 +32,7 @@ const Home = () => {
         {user && <Navigate to='/dashboard' />}
         <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
           <h1 className='flex items-center mb-6 text-2xl font-semibold text-white'>
-            ADN Journal
+            <span className='text-blue-700 text-3xl pr-2'>ADN</span> Todos App
           </h1>
           <div className='w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700'>
             {showAlert && (
