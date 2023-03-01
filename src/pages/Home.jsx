@@ -3,7 +3,6 @@ import { useGlobalContext } from '../context/appContext'
 import { Navigate } from 'react-router-dom'
 import FormRowS from '../components/FormRowS'
 import SectionContainer from '../components/SectionContainer'
-
 const Home = () => {
   const [values, setValues] = useState({
     name: '',
@@ -31,63 +30,62 @@ const Home = () => {
     <>
       <SectionContainer>
         {user && <Navigate to='/dashboard' />}
-        <div className='mx-auto max-w-[1120px] px-4 sm:px-6 xl:max-w-5xl xl:px-0 min-h-[100vh] grid items-center'>
-          <div>
+        <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
+          <h1 className='flex items-center mb-6 text-2xl font-semibold text-white'>
+            ADN Journal
+          </h1>
+          <div className='w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700'>
             {showAlert && (
               <div className='py-[0.375rem] px-[0.75rem] m-auto border-transparent rounded-md md:w-[35vw] max-w-[1120px] text-center capitalize text-red-800 bg-red-200'>
                 there was an error, please try again
               </div>
             )}
-            <form
-              className='max-w-[1120px] md:w-[35vw] bg-white rounded-md shadow-md p-[2.5rem] mx-auto my-auto'
-              onSubmit={onSubmit}
-            >
-              <div className='h-4 flex items-center justify-center mb-8'>
-                <h2 className='ml-2 text-2xl font-bold'>
-                  <span className='text-gray-900'>TodosApp</span>{' '}
-                  <span className='text-sky-700'>ADN</span>
-                </h2>
-              </div>
-              <h4 className='capitalize text-center font-medium text-xl'>
-                {values.isMember ? 'Login' : 'Register'}
-              </h4>
-              {!values.isMember && (
+            <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
+              <h2 className='text-xl font-bold leading-tight tracking-tight t md:text-2xl text-white'>
+                {values.isMember ? 'Login' : 'Create an Account'}
+              </h2>
+              <form
+                className='space-y-4 md:space-y-6 capitalize'
+                onSubmit={onSubmit}
+              >
+                {!values.isMember && (
+                  <FormRowS
+                    type='name'
+                    name='name'
+                    value={values.name}
+                    handleChange={handleChange}
+                  />
+                )}
                 <FormRowS
-                  type='name'
-                  name='name'
-                  value={values.name}
+                  type='email'
+                  name='email'
+                  value={values.email}
                   handleChange={handleChange}
                 />
-              )}
-              <FormRowS
-                type='email'
-                name='email'
-                value={values.email}
-                handleChange={handleChange}
-              />
-              <FormRowS
-                type='password'
-                name='password'
-                value={values.password}
-                handleChange={handleChange}
-              />
-              <button
-                type='submit'
-                className='mt-4 cursor-pointer text-white bg-sky-700 border-transparent rounded-md py-[0.375rem] px-[0.75rem] shadow-md capitalize inline-block w-[100%] mb-4'
-              >
-                Submit
-              </button>
-              <p className='m-0 mt-4 text-center'>
-                {values.isMember ? 'Not a member yet?' : 'Already a member?'}{' '}
+                <FormRowS
+                  type='password'
+                  name='password'
+                  value={values.password}
+                  handleChange={handleChange}
+                />
                 <button
-                  type='button'
-                  onClick={toggleMember}
-                  className='bg-transparent border-transparent text-sky-700 cursor-pointer'
+                  type='submit'
+                  className='w-full text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800'
                 >
-                  {values.isMember ? 'Register' : 'Login'}
+                  Submit
                 </button>
-              </p>
-            </form>
+                <p className='text-sm font-light text-gray-400'>
+                  {values.isMember ? 'Not a member yet?' : 'Already a member?'}{' '}
+                  <button
+                    type='button'
+                    onClick={toggleMember}
+                    className='font-medium hover:underline dark:text-blue-500'
+                  >
+                    {values.isMember ? 'Register' : 'Login'}
+                  </button>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </SectionContainer>

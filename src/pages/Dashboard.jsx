@@ -34,7 +34,7 @@ const Dashboard = () => {
             </div>
           )}
           <form
-            className='bg-white grid gap-y-[1rem] gap-x-[0.5rem] items-center mb-[3rem] rounded-md p-[1.5rem] max-w-screen-lg'
+            className='bg-gray-800 grid gap-y-[1rem] gap-x-[0.5rem] items-center mb-[3rem] rounded-md p-[1.5rem] max-w-screen-lg'
             onSubmit={handleSubmit}
           >
             <FormRowS

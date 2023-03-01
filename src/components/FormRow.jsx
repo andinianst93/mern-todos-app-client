@@ -11,7 +11,10 @@ const FormRow = ({
   return (
     <div className='mb-4'>
       {!horizontal && (
-        <label htmlFor={name} className='block font-medium capitalize mb-2'>
+        <label
+          htmlFor={name}
+          className='block mb-2 text-sm font-medium text-white'
+        >
           {name}
         </label>
       )}
@@ -21,7 +24,7 @@ const FormRow = ({
         name={name}
         onChange={handleChange}
         placeholder={placeholder}
-        className='w-[100%] h-[100px] py-[0.375rem] px-[0.75rem] rounded-md bg-gray-50 border-solid border-2 border-gray-100 text-black'
+        className='block p-2.5 w-full h-[250px] text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500'
       />
     </div>
   )
