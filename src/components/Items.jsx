@@ -3,6 +3,8 @@ import { useGlobalContext } from '../context/appContext'
 import { Link } from 'react-router-dom'
 import { FiEdit } from 'react-icons/fi'
 import { MdDeleteForever } from 'react-icons/md'
+import moment from 'moment'
+
 const Items = () => {
   const { data, isLoading, deleteItem } = useGlobalContext()
 
@@ -26,7 +28,7 @@ const Items = () => {
       <div>
         {data.map((x) => {
           const { _id: id, title, description, status, createdAt } = x
-          console.log(status)
+
           return (
             <article
               key={id}
@@ -39,15 +41,14 @@ const Items = () => {
                       {title}
                     </h2>
                     <p className='text-base text-gray-400'>
-                      {' '}
-                      <span>{createdAt}</span>
+                      {moment({ createdAt }).format('MMMM Do YYYY, h:mm a')}
                     </p>
                   </div>
                   <div className='flex items-center'>
                     <Link
                       to={`/edit/${id}`}
                       type='button'
-                      className='block py-2 px-4 text-green-700'
+                      className='block text-green-700'
                     >
                       <FiEdit />
                     </Link>
@@ -62,7 +63,7 @@ const Items = () => {
                   </div>
                 </div>
               </footer>
-              <p className='text-gray-400'>{description}</p>
+              <p className='text-gray-400 my-4'>{description}</p>
               <p
                 className={
                   status === true
