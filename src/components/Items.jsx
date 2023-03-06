@@ -4,9 +4,18 @@ import { Link } from 'react-router-dom'
 import { FiEdit } from 'react-icons/fi'
 import { MdDeleteForever } from 'react-icons/md'
 import moment from 'moment'
-
+import Pagination from './Pagination'
+import { paginate } from '../helpers/paginate'
 const Items = () => {
   const { data, isLoading, deleteItem } = useGlobalContext()
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 10
+
+  const onPageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedItems = paginate(data, currentPage, pageSize)
 
   if (isLoading) {
     return (
@@ -26,7 +35,7 @@ const Items = () => {
   return (
     <>
       <div>
-        {data.map((x) => {
+        {paginatedItems.map((x) => {
           const { _id: id, title, description, status, updatedAt } = x
 
           return (
@@ -76,6 +85,12 @@ const Items = () => {
             </article>
           )
         })}
+        <Pagination
+          items={data.length}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onPageChange={onPageChange}
+        />
       </div>
     </>
   )

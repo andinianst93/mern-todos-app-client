@@ -36,7 +36,7 @@ const Home = () => {
           </h1>
           <div className='w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700'>
             {showAlert && (
-              <div className='py-[0.375rem] px-[0.75rem] m-auto border-transparent rounded-md md:w-[35vw] max-w-[1120px] text-center capitalize text-red-800 bg-red-200'>
+              <div className='py-[0.375rem] px-[0.75rem] m-auto border-transparent rounded-md text-center capitalize text-red-800 bg-red-100 '>
                 there was an error, please try again
               </div>
             )}
